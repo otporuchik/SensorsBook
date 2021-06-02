@@ -65,7 +65,7 @@ namespace SensorsBook
                     db.CreateTable<SensorManufacturerModel>();
                     db.CreateTable<SensorImageModel>();
                     db.CreateTable<SensorCharacteristicModel>();
-                    //db.CreateTable<SensorSensorModel>();
+                    db.CreateTable<SensorModel>();
                 }
             }
             
