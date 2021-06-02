@@ -5,16 +5,16 @@ winexe
 C#
 .cs
 C:\Users\HP\Documents\GitHub\SensorsBook\SensorsBook\obj\Debug\net5.0-windows\
-SensorsBook_rk3k4kvq_wpftmp
+SensorsBook
 none
 false
 TRACE;DEBUG;NET;NET5_0;NETCOREAPP
 C:\Users\HP\Documents\GitHub\SensorsBook\SensorsBook\App.xaml
-11407045341
+31947365367
 
-51998646822
-1981993832870
-MainWindow.xaml;
+122085777627
+203-1450383780
+MainWindow.xaml;Views\SensorCardView.xaml;Views\SensorsNameListView.xaml;
 
-True
+False
 
