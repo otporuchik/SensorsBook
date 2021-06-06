@@ -54,6 +54,12 @@ namespace SensorsBook.Models
                     return "unknown sensor characteristic value";
                 return _sensorCharacteristicValue;
             }
+            set
+            {
+                _sensorCharacteristicValue = value;
+                OnPropertyChanged("SensorCharacteristicValue");
+                
+            }
         }
     }
 }

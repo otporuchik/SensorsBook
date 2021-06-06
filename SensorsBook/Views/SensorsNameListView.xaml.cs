@@ -45,7 +45,7 @@ namespace SensorsBook.Views
             if(_selectionName != null)
             {
                 //MessageBox.Show($"Your choise is: {_selectionName.SensorName}");
-                MainWindow.GetWindow(this).DataContext = new SensorCardVM();
+                MainWindow.GetWindow(this).DataContext = new SensorCardVM(_selectionName.SensorName);
             }
         }
     }

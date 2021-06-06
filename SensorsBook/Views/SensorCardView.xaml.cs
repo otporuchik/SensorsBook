@@ -12,12 +12,11 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using SensorsBook.ViewModels;
 
 namespace SensorsBook.Views
 {
-    /// <summary>
-    /// Interaction logic for SensorCardView.xaml
-    /// </summary>
+
     public partial class SensorCardView : UserControl
     {
         public SensorCardView()

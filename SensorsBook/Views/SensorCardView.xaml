@@ -7,6 +7,42 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid Background="ForestGreen">
-            
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="12" HorizontalAlignment="Center" Text="{Binding Path=SensorName}" />
+
+        <ScrollViewer Grid.Row="1" Grid.RowSpan="11" Grid.Column="0" Grid.ColumnSpan="12" VerticalScrollBarVisibility="Auto">
+            <StackPanel x:Name="SensorCardPanel" >
+                <TextBlock Text="{Binding Path=SensorWebSite}" />
+            </StackPanel>
+        </ScrollViewer>
+
     </Grid>
 </UserControl>
