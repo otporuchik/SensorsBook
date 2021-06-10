@@ -7,42 +7,11 @@ using SQLite;
 
 namespace SensorsBook.Models
 {
-    public class SensorTypeModel : ObservableObject
+    public class SensorTypeModel
     {
-        private string _sensorName;
-        private string _sensorType;
-
         [PrimaryKey]
         public int Id { get; set; }
-
-        public string SensorName
-        {
-            get
-            {
-                if (string.IsNullOrEmpty(_sensorName))
-                    return "unknown sensor name";
-                return _sensorName;
-            }
-            set
-            {
-                _sensorName = value;
-                OnPropertyChanged("SensorName");
-            }
-        }
-
-        public string SensorType
-        {
-            get
-            {
-                if (string.IsNullOrEmpty(_sensorType))
-                    return "unknown sensor type";
-                return _sensorType;
-            }
-            set
-            {
-                _sensorType = value;
-                OnPropertyChanged("SensorType");
-            }
-        }
+        public string SensorName { get; set; }
+        public string SensorType { get; set; }
     }
 }

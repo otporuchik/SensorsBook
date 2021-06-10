@@ -22,6 +22,7 @@ namespace SensorsBook
     {
 
         string sourcePath, targetPath, fileName, destFile;
+
         string[] files;
 
         public MainWindow()
@@ -68,12 +69,17 @@ namespace SensorsBook
                     db.CreateTable<SensorModel>();
                 }
             }
-            
+           
         }
 
         private void SensorsNameListButton_clicked(object sender, RoutedEventArgs e)
         {
             DataContext = new SensorsNameListVM();
+        }
+
+        private void SensorsAddNewButton_clicked(object sender, RoutedEventArgs e)
+        {
+            DataContext = new SensorAddNewVM();
         }
     }
 }

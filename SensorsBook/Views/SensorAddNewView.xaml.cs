@@ -12,19 +12,17 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using SensorsBook.ViewModels;
-
 
 namespace SensorsBook.Views
 {
-
-    public partial class SensorCardView : UserControl
+    /// <summary>
+    /// Interaction logic for SensorAddNewView.xaml
+    /// </summary>
+    public partial class SensorAddNewView : UserControl
     {
-        public SensorCardView()
+        public SensorAddNewView()
         {
             InitializeComponent();
-
-            //pathName.Text = System.IO.Directory.GetCurrentDirectory();
         }
     }
 }

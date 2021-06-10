@@ -16,6 +16,9 @@
         <DataTemplate x:Name="SensorCardTemplate" DataType="{x:Type viewmodels:SensorCardVM}">
             <views:SensorCardView DataContext="{Binding}" />
         </DataTemplate>
+        <DataTemplate x:Name="SensorAddNewTemplate" DataType="{x:Type viewmodels:SensorAddNewVM}">
+            <views:SensorAddNewView DataContext="{Binding}" />
+        </DataTemplate>
     </Window.Resources>
     
     <Grid>
@@ -49,7 +52,7 @@
         </Grid.RowDefinitions>
 
         <Button Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Content="SensorsNameListButton" Click="SensorsNameListButton_clicked" />
-        <Button Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2" Content="SensorsAddNewButton" />
+        <Button Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2" Content="SensorsAddNewButton" Click="SensorsAddNewButton_clicked" />
 
         <ContentControl Grid.Row="1" Grid.RowSpan="11" Grid.Column="0" Grid.ColumnSpan="12" Content="{Binding}" />
     </Grid>
