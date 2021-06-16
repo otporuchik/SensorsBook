@@ -9,9 +9,17 @@ namespace SensorsBook.Models
 {
     public class SensorTypeModel
     {
-        [PrimaryKey]
+        [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
         public string SensorName { get; set; }
         public string SensorType { get; set; }
+
+        public SensorTypeModel() { }
+
+        public SensorTypeModel(string SensorName, string SensorType)
+        {
+            this.SensorName = SensorName;
+            this.SensorType = SensorType;
+        }
     }
 }

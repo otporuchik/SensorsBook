@@ -14,5 +14,15 @@ namespace SensorsBook.Models
         public string SensorWebSite { get; set; }
         public string SensorDocksFolder { get; set; }
         public string SensorDescription { get; set; }
+
+        public SensorModel() { }
+
+        public SensorModel(string SensorName, string SensorWebSite, string SensorDocksFolder, string SensorDescription)
+        {
+            this.SensorName = SensorName;
+            this.SensorWebSite = SensorWebSite;
+            this.SensorDocksFolder = SensorDocksFolder;
+            this.SensorDescription = SensorDescription;
+        }
     }
 }

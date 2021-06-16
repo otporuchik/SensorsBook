@@ -104,7 +104,6 @@ namespace SensorsBook.ViewModels
         public List<SensorImageModel> SensorImages { get; set; }
         public List<SensorCharacteristicModel> SensorCharacteristics { get; set; }
 
-
         //SensorsNameListView calling this constructor when particular sensor selected
         public SensorCardVM(string name)
         {

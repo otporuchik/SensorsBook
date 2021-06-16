@@ -35,5 +35,89 @@
             <RowDefinition />
             <RowDefinition />
         </Grid.RowDefinitions>
+        <ScrollViewer  Grid.Row="0" Grid.RowSpan="12" Grid.Column="0" Grid.ColumnSpan="6" VerticalScrollBarVisibility="Auto">
+            <StackPanel>
+                <DockPanel>
+                    <TextBlock DockPanel.Dock="Left" Text="Sensor name: " />
+                    <TextBox x:Name="SensorName" DockPanel.Dock="Left" Text="{Binding Path=SensorName, UpdateSourceTrigger=PropertyChanged, Mode=OneWayToSource}" />
+                </DockPanel>
+                <DockPanel>
+                    <TextBlock Text="Sensor website: " />
+                    <TextBox MinWidth="30" Text="{Binding Path=SensorWebSite, UpdateSourceTrigger=PropertyChanged, Mode=OneWayToSource}" />
+                </DockPanel>
+                <DockPanel>
+                    <TextBlock Text="Sensor documents folder (you shouldn't show it to user): " />
+                    <TextBox MinWidth="30" Text="{Binding Path=SensorDocksFolder, UpdateSourceTrigger=PropertyChanged, Mode=OneWayToSource}" />
+                </DockPanel>
+                <DockPanel>
+                    <TextBlock Text="Sensor description: " />
+                    <TextBox MinWidth="30" Text="{Binding Path=SensorDescription, UpdateSourceTrigger=PropertyChanged, Mode=OneWayToSource}" />
+                </DockPanel>
+                <DockPanel>
+                    <TextBlock Text="Sensor type: " />
+                    <TextBox MinWidth="30" Text="{Binding Path=SensorType, UpdateSourceTrigger=PropertyChanged, Mode=OneWayToSource}" />
+                </DockPanel>
+                <DockPanel>
+                    <TextBlock Text="Sensor manufacturer: " />
+                    <TextBox MinWidth="30" Text="{Binding Path=SensorManufacturer, UpdateSourceTrigger=PropertyChanged, Mode=OneWayToSource}" />
+                </DockPanel>
+                <DockPanel>
+                    <TextBox x:Name="CharactName" Text="Sensor characteristic name:" />
+                    <TextBox x:Name="CharactValue" Text="Sensor characteristic value:" />
+                </DockPanel>
+                <DockPanel>
+                    <Button Content="Click to add new characteristic" Click="AddNewCharact_clicked" />
+                    <Button Content="Click to remove characteristic" Click="RemoveCharact_clicked" />
+                </DockPanel>
+                <DockPanel>
+                    <TextBox x:Name="ImageName" Text="Sensor image name:" />
+                    <TextBox x:Name="ImageSource" Text="Sensor image source:" />
+                </DockPanel>
+                <DockPanel>
+                    <Button Content="Click to add new image" Click="AddNewImage_clicked" />
+                    <Button Content="Click to remove image" Click="RemoveImage_clicked" />
+                </DockPanel>
+            </StackPanel>
+        </ScrollViewer>
+ 
+        <ScrollViewer  Grid.Row="0" Grid.RowSpan="12" Grid.Column="6" Grid.ColumnSpan="6" VerticalScrollBarVisibility="Auto">
+            <StackPanel>
+                <TextBlock x:Name="mySensorName" Text="{Binding Path=SensorName, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}" />
+                <TextBlock Text="{Binding Path=SensorWebSite, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}" />
+                <TextBlock Text="{Binding Path=SensorDocksFolder, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}" />
+                <TextBlock Text="{Binding Path=SensorDescription, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}" />
+                <TextBlock Text="{Binding Path=SensorType, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}" />
+                <TextBlock Text="{Binding SensorManufacturer, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
+
+                <ListBox x:Name="SensorCharacteristicsListView" ItemsSource="{Binding SensorCharacteristics}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <DockPanel>
+                                    <TextBox Text="{Binding Path=SensorCharacteristicName}" />
+                                    <TextBox Text="{Binding Path=SensorCharacteristicValue}" />
+                                </DockPanel>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>                    
+                </ListBox>
+
+                <ListBox x:Name="SensorImagesView" ItemsSource="{Binding SensorImages}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <DockPanel>
+                                    <TextBox Text="{Binding Path=SensorImageName}" />
+                                    <TextBox Text="{Binding Path=SensorImageSource}" />
+                                </DockPanel>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+
+                <Button Content="Add new sensor" Click="addNewSensorType_clicked" />
+
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
 </UserControl>
