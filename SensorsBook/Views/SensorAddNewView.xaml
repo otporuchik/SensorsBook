@@ -77,6 +77,8 @@
                     <Button Content="Click to add new image" Click="AddNewImage_clicked" />
                     <Button Content="Click to remove image" Click="RemoveImage_clicked" />
                 </DockPanel>
+                <Button Content="find image" Click="findImage_clicked" />
+                <TextBlock x:Name="testText" />
             </StackPanel>
         </ScrollViewer>
  

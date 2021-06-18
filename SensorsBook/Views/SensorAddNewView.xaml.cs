@@ -14,6 +14,8 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using SensorsBook.ViewModels;
 using SensorsBook.Models;
+using Microsoft.Win32;
+using System.IO;
 
 namespace SensorsBook.Views
 {
@@ -100,6 +102,38 @@ namespace SensorsBook.Views
                     db.InsertAll(addNewVM.SensorCharacteristics);
                 }
             }
+        }
+
+        private void findImage_clicked(object sender, RoutedEventArgs e)
+        {
+            SensorAddNewVM addNewVM = this.DataContext as SensorAddNewVM;
+
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Multiselect = true;
+            openFileDialog.Filter = "Text files (*.txt)|*.txt|All files(*.*)|*.*";
+            openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            openFileDialog.ShowDialog();
+
+            //creating directories for images and docks if not existed
+            string targetPath = $@".\ImageFolder\{addNewVM.SensorName}";
+            DirectoryInfo dirInfo = new DirectoryInfo(targetPath);
+            if (!dirInfo.Exists)
+                dirInfo.Create();
+
+            string s = "";
+            foreach(string eachFile in openFileDialog.FileNames)
+            {
+
+                s = s + eachFile + "\n";
+
+                //copying chosen files to folder/directory called "SensorName" in ImageFolder.
+                FileInfo fileInfo = new FileInfo(eachFile);
+                fileInfo.CopyTo($@"{targetPath}\{fileInfo.Name}");
+
+            }
+
+            testText.Text = s;
+
         }
     }
 }
