@@ -78,7 +78,6 @@
                     <Button Content="Click to remove image" Click="RemoveImage_clicked" />
                 </DockPanel>
                 <Button Content="find image" Click="findImage_clicked" />
-                <TextBlock x:Name="testText" />
             </StackPanel>
         </ScrollViewer>
  
@@ -109,8 +108,8 @@
                         <DataTemplate>
                             <StackPanel>
                                 <DockPanel>
-                                    <TextBox Text="{Binding Path=SensorImageName}" />
-                                    <TextBox Text="{Binding Path=SensorImageSource}" />
+                                    <TextBlock Text="{Binding Path=SensorImageName}" />
+                                    <TextBlock Text ="{Binding Path=SensorImageSource}" />
                                 </DockPanel>
                             </StackPanel>
                         </DataTemplate>

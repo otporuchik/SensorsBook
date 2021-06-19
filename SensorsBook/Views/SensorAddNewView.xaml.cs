@@ -110,29 +110,28 @@ namespace SensorsBook.Views
 
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Multiselect = true;
-            openFileDialog.Filter = "Text files (*.txt)|*.txt|All files(*.*)|*.*";
+            openFileDialog.Filter = "Images (*.png)|*.png|All files(*.*)|*.*";
             openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             openFileDialog.ShowDialog();
 
             //creating directories for images and docks if not existed
-            string targetPath = $@".\ImageFolder\{addNewVM.SensorName}";
+            string targetPath = $@"{System.AppDomain.CurrentDomain.BaseDirectory}ImageFolder\{addNewVM.SensorName}"; //getting running directory
             DirectoryInfo dirInfo = new DirectoryInfo(targetPath);
             if (!dirInfo.Exists)
                 dirInfo.Create();
 
-            string s = "";
+            FileInfo eachFileInfo;
             foreach(string eachFile in openFileDialog.FileNames)
             {
-
-                s = s + eachFile + "\n";
+                eachFileInfo = new FileInfo(eachFile);
 
                 //copying chosen files to folder/directory called "SensorName" in ImageFolder.
-                FileInfo fileInfo = new FileInfo(eachFile);
-                fileInfo.CopyTo($@"{targetPath}\{fileInfo.Name}");
+                eachFileInfo.CopyTo($@"{targetPath}\{eachFileInfo.Name}", true);
 
+                //add new image model to sensor images list
+                SensorImageModel imageModel = new SensorImageModel(addNewVM.SensorName, eachFileInfo.Name, $@"{targetPath}\{eachFileInfo.Name}");
+                addNewVM.SensorImages.Add(imageModel);
             }
-
-            testText.Text = s;
 
         }
     }
