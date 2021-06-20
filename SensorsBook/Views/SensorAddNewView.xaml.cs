@@ -16,6 +16,7 @@ using SensorsBook.ViewModels;
 using SensorsBook.Models;
 using Microsoft.Win32;
 using System.IO;
+using System.Collections.ObjectModel;
 
 namespace SensorsBook.Views
 {
@@ -84,6 +85,22 @@ namespace SensorsBook.Views
             SensorAddNewVM addNewVM = this.DataContext as SensorAddNewVM;
             if(addNewVM != null)
             {
+                //creating directory for images and docks if not existed
+                string targetPath = $@"{System.AppDomain.CurrentDomain.BaseDirectory}ImageFolder\{addNewVM.SensorName}"; //getting running directory
+                DirectoryInfo dirInfo = new DirectoryInfo(targetPath);
+                if (!dirInfo.Exists)
+                    dirInfo.Create();
+
+                //copying chosen images (findImage_clicked) to previously created directory in ImageFolder
+                //and change sensor name in case it was changed after collection had been first time created.
+                FileInfo fileInfo;
+                foreach(SensorImageModel imageModel in addNewVM.SensorImages)
+                {
+                    fileInfo = new FileInfo(imageModel.SensorImageSource);
+                    fileInfo.CopyTo($@"{targetPath}\{imageModel.SensorImageName}", true);
+                    imageModel.SensorName = addNewVM.SensorName;
+                }
+
                 using (var db = new SQLite.SQLiteConnection("SensorsDB.db", true))
                 {
                     db.CreateTable<SensorModel>();
@@ -114,25 +131,13 @@ namespace SensorsBook.Views
             openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             openFileDialog.ShowDialog();
 
-            //creating directories for images and docks if not existed
-            string targetPath = $@"{System.AppDomain.CurrentDomain.BaseDirectory}ImageFolder\{addNewVM.SensorName}"; //getting running directory
-            DirectoryInfo dirInfo = new DirectoryInfo(targetPath);
-            if (!dirInfo.Exists)
-                dirInfo.Create();
-
             FileInfo eachFileInfo;
             foreach(string eachFile in openFileDialog.FileNames)
             {
                 eachFileInfo = new FileInfo(eachFile);
-
-                //copying chosen files to folder/directory called "SensorName" in ImageFolder.
-                eachFileInfo.CopyTo($@"{targetPath}\{eachFileInfo.Name}", true);
-
-                //add new image model to sensor images list
-                SensorImageModel imageModel = new SensorImageModel(addNewVM.SensorName, eachFileInfo.Name, $@"{targetPath}\{eachFileInfo.Name}");
-                addNewVM.SensorImages.Add(imageModel);
+                //only to show in preview, before writing to sql need to be overwritten with current valuew in case they're newer.
+                addNewVM.SensorImages.Add(new SensorImageModel(addNewVM.SensorName, eachFileInfo.Name, eachFileInfo.FullName));
             }
-
         }
     }
 }

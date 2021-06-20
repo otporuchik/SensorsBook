@@ -109,7 +109,7 @@
                             <StackPanel>
                                 <DockPanel>
                                     <TextBlock Text="{Binding Path=SensorImageName}" />
-                                    <TextBlock Text ="{Binding Path=SensorImageSource}" />
+                                    <Image Source ="{Binding Path=SensorImageSource}" Width="80" />
                                 </DockPanel>
                             </StackPanel>
                         </DataTemplate>
