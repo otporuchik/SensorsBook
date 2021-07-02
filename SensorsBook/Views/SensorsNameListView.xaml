@@ -24,19 +24,38 @@
             <ColumnDefinition />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
-        <ListBox Grid.Column="0" Grid.ColumnSpan="3" Name="SensorTypeListView" SelectionChanged="SensorType_selected">
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        
+        <ListBox Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="1" Grid.RowSpan="11" Name="SensorTypeListView" SelectionChanged="SensorType_selected">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <TextBlock Text="{Binding Path=SensorType}" />
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <ListBox Grid.Column="3" Grid.ColumnSpan="9" x:Name="SensorNameListView" SelectionChanged="SensorName_selected">
+        
+        <ListBox Grid.Column="3" Grid.ColumnSpan="9" Grid.Row="1" Grid.RowSpan="11" x:Name="SensorNameListView" SelectionChanged="SensorName_selected">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <TextBlock Text="{Binding Path=SensorName}" />
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
+
+        <Button Grid.Column="0" Grid.Row="0" x:Name="DeleteSensor" Content="Delete sensor" Click="DeleteSensor_clicked" />
+
     </Grid>
 </UserControl>

@@ -11,7 +11,6 @@ namespace SensorsBook.ViewModels
     {
         private string _sensorName;
         private string _sensorWebSite;
-        private string _sensorDocksFolder;
         private string _sensorDescription;
         private string _sensorType;
         private string _sensorManufacturer;
@@ -44,20 +43,7 @@ namespace SensorsBook.ViewModels
                 OnPropertyChanged(nameof(SensorWebSite)); //just to test nameof...
             }
         }
-        public string SensorDocksFolder 
-        { 
-            get
-            {
-                if (string.IsNullOrEmpty(_sensorDocksFolder))
-                    return "unknown docks folder";
-                return _sensorDocksFolder;
-            }
-            set
-            {
-                _sensorDocksFolder = value;
-                OnPropertyChanged(nameof(SensorDocksFolder));
-            }
-        }
+
         public string SensorDescription
         {
             get
@@ -102,6 +88,7 @@ namespace SensorsBook.ViewModels
 
          }
         public List<SensorImageModel> SensorImages { get; set; }
+        public List<SensorDockumentModel> SensorDockuments { get; set; }
         public List<SensorCharacteristicModel> SensorCharacteristics { get; set; }
 
         //SensorsNameListView calling this constructor when particular sensor selected
@@ -113,16 +100,13 @@ namespace SensorsBook.ViewModels
                 db.CreateTable<SensorModel>();
                 db.CreateTable<SensorTypeModel>();
                 db.CreateTable<SensorManufacturerModel>();
+                db.CreateTable<SensorDockumentModel>();
                 db.CreateTable<SensorImageModel>();
                 db.CreateTable<SensorCharacteristicModel>();
 
                 this.SensorWebSite = db.Query<SensorModel>
                     ("SELECT SensorWebSite FROM SensorModel " +
                     $"WHERE SensorName = '{name}'")[0].SensorWebSite;
-
-                this.SensorDocksFolder = db.Query<SensorModel>
-                    ("SELECT SensorDocksFolder FROM SensorModel " +
-                    $"WHERE SensorName = '{SensorName}'")[0].SensorDocksFolder;
 
                 this.SensorDescription = db.Query<SensorModel>
                     ("SELECT SensorDescription FROM SensorModel " +
@@ -134,7 +118,11 @@ namespace SensorsBook.ViewModels
 
                 this.SensorManufacturer = db.Query<SensorManufacturerModel>
                     ("SELECT SensorManufacturer FROM SensorManufacturerModel " +
-                    $"WHERE SensorName = '{SensorName}'")[0].SensorManufacturer; 
+                    $"WHERE SensorName = '{SensorName}'")[0].SensorManufacturer;
+
+                this.SensorDockuments = db.Query<SensorDockumentModel>
+                    ("SELECT * FROM SensorDockumentModel " +
+                    $"WHERE SensorName = '{SensorName}'");
 
                 this.SensorImages = db.Query<SensorImageModel>
                     ("SELECT * FROM SensorImageModel " +

@@ -46,10 +46,6 @@
                     <TextBox MinWidth="30" Text="{Binding Path=SensorWebSite, UpdateSourceTrigger=PropertyChanged, Mode=OneWayToSource}" />
                 </DockPanel>
                 <DockPanel>
-                    <TextBlock Text="Sensor documents folder (you shouldn't show it to user): " />
-                    <TextBox MinWidth="30" Text="{Binding Path=SensorDocksFolder, UpdateSourceTrigger=PropertyChanged, Mode=OneWayToSource}" />
-                </DockPanel>
-                <DockPanel>
                     <TextBlock Text="Sensor description: " />
                     <TextBox MinWidth="30" Text="{Binding Path=SensorDescription, UpdateSourceTrigger=PropertyChanged, Mode=OneWayToSource}" />
                 </DockPanel>
@@ -70,22 +66,26 @@
                     <Button Content="Click to remove characteristic" Click="RemoveCharact_clicked" />
                 </DockPanel>
                 <DockPanel>
-                    <TextBox x:Name="ImageName" Text="Sensor image name:" />
-                    <TextBox x:Name="ImageSource" Text="Sensor image source:" />
+                    <Button Content="click to find image" Click="findImage_clicked" DockPanel.Dock="Left" />
+                    <Button Content="Click to remove image" Click="RemoveImage_clicked" DockPanel.Dock="Right" />
                 </DockPanel>
                 <DockPanel>
-                    <Button Content="Click to add new image" Click="AddNewImage_clicked" />
-                    <Button Content="Click to remove image" Click="RemoveImage_clicked" />
+                    <Button Content="click to find dockument" Click="findDock_clicked" DockPanel.Dock="Left" />
+                    <Button Content="Click to remove dockument" Click="RemoveDock_clicked" DockPanel.Dock="Right" />
                 </DockPanel>
-                <Button Content="find image" Click="findImage_clicked" />
+
+                <TextBlock Text="click me">
+                    <Hyperlink Click="hyperLink_clicked">
+                        notepad.exe
+                    </Hyperlink>
+                </TextBlock>
             </StackPanel>
         </ScrollViewer>
- 
+
         <ScrollViewer  Grid.Row="0" Grid.RowSpan="12" Grid.Column="6" Grid.ColumnSpan="6" VerticalScrollBarVisibility="Auto">
             <StackPanel>
                 <TextBlock x:Name="mySensorName" Text="{Binding Path=SensorName, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}" />
                 <TextBlock Text="{Binding Path=SensorWebSite, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}" />
-                <TextBlock Text="{Binding Path=SensorDocksFolder, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}" />
                 <TextBlock Text="{Binding Path=SensorDescription, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}" />
                 <TextBlock Text="{Binding Path=SensorType, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}" />
                 <TextBlock Text="{Binding SensorManufacturer, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
@@ -100,10 +100,10 @@
                                 </DockPanel>
                             </StackPanel>
                         </DataTemplate>
-                    </ListBox.ItemTemplate>                    
+                    </ListBox.ItemTemplate>
                 </ListBox>
 
-                <ListBox x:Name="SensorImagesView" ItemsSource="{Binding SensorImages}">
+                <ListBox x:Name="SensorImagesView" ItemsSource="{Binding SensorImages}" SelectionChanged="Image_selected">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <StackPanel>
@@ -116,9 +116,23 @@
                     </ListBox.ItemTemplate>
                 </ListBox>
 
+                <ListBox x:Name="SensorDockumentsView" ItemsSource="{Binding SensorDockuments}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <DockPanel>
+                                    <TextBlock Text="{Binding Path=SensorDockumentName}" />
+                                    <TextBlock Text="{Binding Path=SensorDockumentSource}" />
+                                </DockPanel>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+
                 <Button Content="Add new sensor" Click="addNewSensorType_clicked" />
 
             </StackPanel>
+
         </ScrollViewer>
     </Grid>
 </UserControl>

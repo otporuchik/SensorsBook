@@ -41,7 +41,6 @@
                 <TextBlock HorizontalAlignment="Center" Text="{Binding Path=SensorName}" />
                 <TextBlock HorizontalAlignment="Center" Text="{Binding Path=SensorType}" />
                 <TextBlock HorizontalAlignment="Center" Text="{Binding Path=SensorWebSite}" />
-                <TextBlock HorizontalAlignment="Center" Text="{Binding Path=SensorDocksFolder}" />
                 <TextBlock HorizontalAlignment="Center" Text="{Binding Path=SensorDescription}" />
                 <ListBox ItemsSource="{Binding SensorImages}">
                     <ListBox.ItemTemplate>
@@ -53,6 +52,7 @@
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>
+                
                 <ListBox ItemsSource="{Binding SensorCharacteristics}" >
                     <ListBox.ItemTemplate>
                         <DataTemplate>
@@ -63,6 +63,20 @@
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>
+
+                <ListBox x:Name="SensorDockumentsView" ItemsSource="{Binding SensorDockuments}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <DockPanel>
+                                    <TextBlock Text="{Binding Path=SensorDockumentName}" />
+                                    <TextBlock Text="{Binding Path=SensorDockumentSource}" />
+                                </DockPanel>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+                
             </StackPanel>
         </ScrollViewer>
 

@@ -103,6 +103,7 @@ namespace SensorsBook.ViewModels
 
         }
         public ObservableCollection<SensorImageModel> SensorImages { get; set; }
+        public ObservableCollection<SensorDockumentModel> SensorDockuments { get; set; }
         public ObservableCollection<SensorCharacteristicModel> SensorCharacteristics { get; set; }
 
         //for test
@@ -111,6 +112,7 @@ namespace SensorsBook.ViewModels
         {
             SensorImages = new ObservableCollection<SensorImageModel>();
             SensorCharacteristics = new ObservableCollection<SensorCharacteristicModel>();
+            SensorDockuments = new ObservableCollection<SensorDockumentModel>();
         }
 
     }

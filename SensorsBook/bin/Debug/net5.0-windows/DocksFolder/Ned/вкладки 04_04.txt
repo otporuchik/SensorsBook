@@ -1,0 +1,27 @@
+Tutorial 06 for Arduino: Serial Communication and Processing
+https://www.youtube.com/watch?v=g0pSfyXOXj8
+
+keyestudio arduino
+https://wiki.keyestudio.com/KS0077(78,79）Super_Learning_Kit_for_Arduino#Project_13:_Tilt_Switch
+
+12. MySQL 8 - Агрегирующие функции
+https://www.youtube.com/watch?v=549E5lzzbiU&list=PLOQDek48BpZFeW02dfJM77FY4Fp5ilJ6n&index=23
+
+C# Tutorial for Beginners | Learn the Basics of C# programming (4,5
+https://www.youtube.com/watch?v=UKaZ2S4AJAA
+
+Switching Between Multiple Views in MVVM - EASY WPF (.NET CORE)
+https://www.youtube.com/watch?v=1_cUgpWqS0Y
+
+Creating a Navbar (Navigation Bar) in C# | WPF (User Controls)
+https://www.youtube.com/watch?v=cR7juaZVnSw
+
+WPF. Создание UserControl. Часть 1
+https://www.youtube.com/watch?v=RcZcbsXxPRs
+
+******************************************************
+ПИШЕМ ПРИЛОЖЕНИЕ СПИСОК ДЕЛ НА C# WPF ОТ НАЧАЛА ДО КОНЦА | DATAGRID | JSON ПАРСИНГ РАБОТА С ФАЙЛАМИ
+https://www.youtube.com/watch?v=Mb3S2IK3NzI
+*******************************************************
+https://www.youtube.com/c/ToskersCorner/playlists
+*******************************************************
