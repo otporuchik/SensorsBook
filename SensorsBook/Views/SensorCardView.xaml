@@ -36,9 +36,11 @@
             <RowDefinition />
         </Grid.RowDefinitions>
 
-        <ScrollViewer Grid.Row="0" Grid.RowSpan="12" Grid.Column="0" Grid.ColumnSpan="12" VerticalScrollBarVisibility="Auto">
+        <Button Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Content="Delete this" Click="DeleteSensor_clicked" />
+
+        <ScrollViewer Grid.Row="1" Grid.RowSpan="12" Grid.Column="0" Grid.ColumnSpan="12" VerticalScrollBarVisibility="Auto">
             <StackPanel>
-                <TextBlock HorizontalAlignment="Center" Text="{Binding Path=SensorName}" />
+                <TextBlock x:Name="SensorNameTextBlock" HorizontalAlignment="Center" Text="{Binding Path=SensorName}" />
                 <TextBlock HorizontalAlignment="Center" Text="{Binding Path=SensorType}" />
                 <TextBlock HorizontalAlignment="Center" Text="{Binding Path=SensorWebSite}" />
                 <TextBlock HorizontalAlignment="Center" Text="{Binding Path=SensorDescription}" />

@@ -25,6 +25,7 @@ namespace SensorsBook.Views
 
         public SensorTypeModel SelectedSensorType;
         public String SensorToDelete;
+        public String CurrentSensorType;
 
         public SensorsNameListView()
         {
@@ -39,6 +40,8 @@ namespace SensorsBook.Views
             if(SelectedSensorType != null)
             {
                 SensorNameListView.ItemsSource = new SensorsNameListVM().getNamesList(SelectedSensorType.SensorType);
+
+                CurrentSensorType = SelectedSensorType.SensorType;
             }
         }
 
@@ -48,37 +51,10 @@ namespace SensorsBook.Views
             if(_selectionName != null)
             {
                 //MessageBox.Show($"Your choise is: {_selectionName.SensorName}, index in List: {SensorNameListView.SelectedIndex}");
-                //MainWindow.GetWindow(this).DataContext = new SensorCardVM(_selectionName.SensorName);
+                MainWindow.GetWindow(this).DataContext = new SensorCardVM(_selectionName.SensorName);
                 SensorToDelete = _selectionName.SensorName;
             }
         }
 
-        private void DeleteSensor_clicked(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show($"You want to delete: {SensorToDelete}");
-
-            using (var db = new SQLite.SQLiteConnection("SensorsDB.db"))
-            {
-                db.Execute
-                    ($"DELETE FROM SensorTypeModel WHERE SensorName = '{SensorToDelete}'");
-
-                /*
-                db.CreateTable<SensorTypeModel>();
-                db.CreateTable<SensorManufacturerModel>();
-                db.CreateTable<SensorImageModel>();
-                db.CreateTable<SensorDockumentModel>();
-                db.CreateTable<SensorCharacteristicModel>();
-                db.CreateTable<SensorModel>();
-
-                db.Delete<SensorModel>(SensorToDelete);
-                db.Delete<SensorCharacteristicModel>(SensorToDelete);
-                db.Delete<SensorDockumentModel>(SensorToDelete);
-                db.Delete<SensorImageModel>(SensorToDelete);
-                db.Delete<SensorManufacturerModel>(SensorToDelete);
-                db.Delete<SensorTypeModel>(SensorToDelete);
-                */
-            }
-            SensorNameListView.ItemsSource = new SensorsNameListVM().getNamesList(SelectedSensorType.SensorType);
-        }
     }
 }
