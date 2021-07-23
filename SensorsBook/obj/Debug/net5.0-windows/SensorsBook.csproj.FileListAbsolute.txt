@@ -58,3 +58,4 @@ C:\Users\HP\Documents\GitHub\SensorsBook\SensorsBook\obj\Debug\net5.0-windows\Se
 C:\Users\HP\Documents\GitHub\SensorsBook\SensorsBook\obj\Debug\net5.0-windows\SensorsBook.genruntimeconfig.cache
 C:\Users\HP\Documents\GitHub\SensorsBook\SensorsBook\obj\Debug\net5.0-windows\Views\SensorAddNewView.g.cs
 C:\Users\HP\Documents\GitHub\SensorsBook\SensorsBook\obj\Debug\net5.0-windows\Views\SensorAddNewView.baml
+C:\Users\HP\Documents\GitHub\SensorsBook\SensorsBook\obj\Debug\net5.0-windows\SensorsBook.csprojAssemblyReference.cache

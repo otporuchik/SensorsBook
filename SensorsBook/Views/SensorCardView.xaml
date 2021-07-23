@@ -37,6 +37,7 @@
         </Grid.RowDefinitions>
 
         <Button Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Content="Delete this" Click="DeleteSensor_clicked" />
+        <Button Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2" Content="Edit this" Click="EditSensor_clicked" />
 
         <ScrollViewer Grid.Row="1" Grid.RowSpan="12" Grid.Column="0" Grid.ColumnSpan="12" VerticalScrollBarVisibility="Auto">
             <StackPanel>

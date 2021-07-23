@@ -97,25 +97,33 @@ namespace SensorsBook.Views
 
                 using (var db = new SQLite.SQLiteConnection("SensorsDB.db", true))
                 {
-                    db.CreateTable<SensorModel>();
+                    //if sensor exists (edit of existing) delete it and then add edited like new
+                    List<SensorTypeModel> sensor = db.Query<SensorTypeModel>($"SELECT * FROM SensorTypeModel WHERE SensorName = '{addNewVM.SensorName}'");
+                    if(sensor != null)
+                    {
+                        db.Execute
+                        ($"DELETE FROM SensorTypeModel WHERE SensorName = '{addNewVM.SensorName}'");
+                        db.Execute
+                            ($"DELETE FROM SensorManufacturerModel WHERE SensorName = '{addNewVM.SensorName}'");
+                        db.Execute
+                            ($"DELETE FROM SensorImageModel WHERE SensorName = '{addNewVM.SensorName}'");
+                        db.Execute
+                            ($"DELETE FROM SensorDockumentModel WHERE SensorName = '{addNewVM.SensorName}'");
+                        db.Execute
+                            ($"DELETE FROM SensorCharacteristicModel WHERE SensorName = '{addNewVM.SensorName}'");
+                        db.Execute
+                            ($"DELETE FROM SensorModel WHERE SensorName = '{addNewVM.SensorName}'");
+                    }
+                    //adding new sensor
                     db.Insert(new SensorModel(addNewVM.SensorName, addNewVM.SensorWebSite, addNewVM.SensorDescription));
-
-                    db.CreateTable<SensorTypeModel>();
                     db.Insert(new SensorTypeModel(addNewVM.SensorName, addNewVM.SensorType));
-
-                    db.CreateTable<SensorManufacturerModel>();
                     db.Insert( new SensorManufacturerModel(addNewVM.SensorName, addNewVM.SensorManufacturer));
-
-                    db.CreateTable<SensorImageModel>();
                     db.InsertAll(addNewVM.SensorImages);
-
-                    db.CreateTable<SensorDockumentModel>();
                     db.InsertAll(addNewVM.SensorDockuments);
-
-                    db.CreateTable<SensorCharacteristicModel>();
                     db.InsertAll(addNewVM.SensorCharacteristics);
                 }
             }
+            MainWindow.GetWindow(this).DataContext = new SensorsNameListVM();
         }
 
         private void findImage_clicked(object sender, RoutedEventArgs e)
@@ -156,7 +164,7 @@ namespace SensorsBook.Views
         //it's just a test of functionality
         private void hyperLink_clicked(object sender, RoutedEventArgs e)
         {
-            Process.Start("notepad.exe");
+            //Process.Start("notepad.exe");
             if(selectedImage != null)
             {
                 MessageBox.Show(selectedImage.SensorImageName);
@@ -209,7 +217,7 @@ namespace SensorsBook.Views
             SensorAddNewVM addNewVM = this.DataContext as SensorAddNewVM;
 
             selectedImage = (SensorImageModel)SensorImagesView.SelectedItem;
-            //MessageBox.Show($"{selectedImage.SensorImageName}\n{selectedImage.SensorImageSource}\n{SensorImagesView.SelectedIndex}");
+            MessageBox.Show($"{selectedImage.SensorImageName}\n{selectedImage.SensorImageSource}\n{SensorImagesView.SelectedIndex}");
         }
     }
 }

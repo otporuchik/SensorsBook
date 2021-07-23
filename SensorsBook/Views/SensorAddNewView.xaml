@@ -36,26 +36,27 @@
             <RowDefinition />
         </Grid.RowDefinitions>
         <ScrollViewer  Grid.Row="0" Grid.RowSpan="12" Grid.Column="0" Grid.ColumnSpan="6" VerticalScrollBarVisibility="Auto">
+            <!-- panel holding fields to input changes -->
             <StackPanel>
                 <DockPanel>
                     <TextBlock DockPanel.Dock="Left" Text="Sensor name: " />
-                    <TextBox x:Name="SensorName" DockPanel.Dock="Left" Text="{Binding Path=SensorName, UpdateSourceTrigger=PropertyChanged, Mode=OneWayToSource}" />
+                    <TextBox x:Name="SensorName" DockPanel.Dock="Left" Text="{Binding Path=SensorName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
                 </DockPanel>
                 <DockPanel>
                     <TextBlock Text="Sensor website: " />
-                    <TextBox MinWidth="30" Text="{Binding Path=SensorWebSite, UpdateSourceTrigger=PropertyChanged, Mode=OneWayToSource}" />
+                    <TextBox MinWidth="30" Text="{Binding Path=SensorWebSite, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
                 </DockPanel>
                 <DockPanel>
                     <TextBlock Text="Sensor description: " />
-                    <TextBox MinWidth="30" Text="{Binding Path=SensorDescription, UpdateSourceTrigger=PropertyChanged, Mode=OneWayToSource}" />
+                    <TextBox MinWidth="30" Text="{Binding Path=SensorDescription, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
                 </DockPanel>
                 <DockPanel>
                     <TextBlock Text="Sensor type: " />
-                    <TextBox MinWidth="30" Text="{Binding Path=SensorType, UpdateSourceTrigger=PropertyChanged, Mode=OneWayToSource}" />
+                    <TextBox MinWidth="30" Text="{Binding Path=SensorType, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
                 </DockPanel>
                 <DockPanel>
                     <TextBlock Text="Sensor manufacturer: " />
-                    <TextBox MinWidth="30" Text="{Binding Path=SensorManufacturer, UpdateSourceTrigger=PropertyChanged, Mode=OneWayToSource}" />
+                    <TextBox MinWidth="30" Text="{Binding Path=SensorManufacturer, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" /> <!--Mode=OneWayToSource-->
                 </DockPanel>
                 <DockPanel>
                     <TextBox x:Name="CharactName" Text="Sensor characteristic name:" />
@@ -83,6 +84,7 @@
         </ScrollViewer>
 
         <ScrollViewer  Grid.Row="0" Grid.RowSpan="12" Grid.Column="6" Grid.ColumnSpan="6" VerticalScrollBarVisibility="Auto">
+            <!-- preview panel -->
             <StackPanel>
                 <TextBlock x:Name="mySensorName" Text="{Binding Path=SensorName, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}" />
                 <TextBlock Text="{Binding Path=SensorWebSite, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}" />
@@ -95,8 +97,8 @@
                         <DataTemplate>
                             <StackPanel>
                                 <DockPanel>
-                                    <TextBox Text="{Binding Path=SensorCharacteristicName}" />
-                                    <TextBox Text="{Binding Path=SensorCharacteristicValue}" />
+                                    <TextBox DockPanel.Dock="Top" Text="{Binding Path=SensorCharacteristicName}" />
+                                    <TextBox DockPanel.Dock="Bottom" Text="{Binding Path=SensorCharacteristicValue}" />
                                 </DockPanel>
                             </StackPanel>
                         </DataTemplate>

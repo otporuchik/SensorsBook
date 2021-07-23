@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using SensorsBook.Models;
 using SensorsBook.ViewModels;
 
 
@@ -49,9 +51,31 @@ namespace SensorsBook.Views
                         ($"DELETE FROM SensorModel WHERE SensorName = '{SensorCard.SensorName}'");
                 }
 
-                MainWindow.GetWindow(this).DataContext = new SensorsNameListVM();
+                //deleting docks and image directories
 
+                //image dir
+                string targetPath = $@"{System.AppDomain.CurrentDomain.BaseDirectory}ImageFolder\{SensorCard.SensorName}"; //getting running directory
+                DirectoryInfo dirInfo = new DirectoryInfo(targetPath);
+                if (dirInfo.Exists)
+                    dirInfo.Delete(true);//delete directory and all it's subdirectories and files in it
+
+                //dock dir
+                targetPath = $@"{System.AppDomain.CurrentDomain.BaseDirectory}DocksFolder\{SensorCard.SensorName}";
+                dirInfo = new DirectoryInfo(targetPath);
+                if (dirInfo.Exists)
+                    dirInfo.Delete(true);
             }
+
+            MainWindow.GetWindow(this).DataContext = new SensorsNameListVM();
+
+        }
+
+        //sending Sensor name to editors view
+        private void EditSensor_clicked(object sender, RoutedEventArgs e)
+        {
+            SensorCardVM SensorCard = this.DataContext as SensorCardVM;
+            MessageBox.Show($"{ SensorCard.SensorName} you want to edit");
+            MainWindow.GetWindow(this).DataContext = new SensorAddNewVM(SensorCard.SensorName);
         }
     }
 }
