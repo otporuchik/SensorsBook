@@ -27,6 +27,7 @@ namespace SensorsBook.Views
     public partial class SensorAddNewView : UserControl
     {
         SensorImageModel selectedImage;
+        int selectedCharacteristicIndex = -1;
 
         public SensorAddNewView()
         {
@@ -38,7 +39,17 @@ namespace SensorsBook.Views
             SensorAddNewVM addNewVM = this.DataContext as SensorAddNewVM;
             if(addNewVM != null)
             {
-                addNewVM.SensorCharacteristics.Add(new SensorCharacteristicModel(addNewVM.SensorName, CharactName.Text, CharactValue.Text));
+                if(selectedCharacteristicIndex == -1) //that means there is no selected item to edit in characteristic list.
+                {
+                    addNewVM.SensorCharacteristics.Add(new SensorCharacteristicModel(addNewVM.SensorName, CharactName.Text, CharactValue.Text));
+                }
+                else
+                {
+                    SensorCharacteristicModel sensorCharacteristic = new SensorCharacteristicModel(addNewVM.SensorName, CharactName.Text, CharactValue.Text);
+                    MessageBox.Show("I'm here");
+                    addNewVM.SensorCharacteristics[selectedCharacteristicIndex] = sensorCharacteristic;
+                    selectedCharacteristicIndex = -1;
+                }
             }
         }
 
@@ -218,6 +229,24 @@ namespace SensorsBook.Views
 
             selectedImage = (SensorImageModel)SensorImagesView.SelectedItem;
             MessageBox.Show($"{selectedImage.SensorImageName}\n{selectedImage.SensorImageSource}\n{SensorImagesView.SelectedIndex}");
+        }
+
+        private void SensorCharactItem_selected(object sender, SelectionChangedEventArgs e)
+        {
+            SensorCharacteristicModel sensorCharacteristic = (SensorCharacteristicModel)SensorCharacteristicsListView.SelectedItem;
+            /*
+            MessageBox.Show($"selected charact name = {sensorCharacteristic.SensorCharacteristicName}\n" +
+                $"selected charact value = {sensorCharacteristic.SensorCharacteristicValue}\n" +
+                $"selected charact index = {SensorCharacteristicsListView.SelectedIndex}");
+            */
+
+            selectedCharacteristicIndex = SensorCharacteristicsListView.SelectedIndex;
+
+            if(sensorCharacteristic != null)
+            {
+                CharactName.Text = sensorCharacteristic.SensorCharacteristicName;
+                CharactValue.Text = sensorCharacteristic.SensorCharacteristicValue;
+            }
         }
     }
 }

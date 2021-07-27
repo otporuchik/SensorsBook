@@ -92,13 +92,13 @@
                 <TextBlock Text="{Binding Path=SensorType, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}" />
                 <TextBlock Text="{Binding SensorManufacturer, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
 
-                <ListBox x:Name="SensorCharacteristicsListView" ItemsSource="{Binding SensorCharacteristics}">
+                <ListBox x:Name="SensorCharacteristicsListView" ItemsSource="{Binding SensorCharacteristics}" SelectionChanged="SensorCharactItem_selected">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <StackPanel>
                                 <DockPanel>
-                                    <TextBox DockPanel.Dock="Top" Text="{Binding Path=SensorCharacteristicName}" />
-                                    <TextBox DockPanel.Dock="Bottom" Text="{Binding Path=SensorCharacteristicValue}" />
+                                    <TextBlock DockPanel.Dock="Top" Text="{Binding Path=SensorCharacteristicName}" />
+                                    <TextBlock DockPanel.Dock="Bottom" Text="{Binding Path=SensorCharacteristicValue}" />
                                 </DockPanel>
                             </StackPanel>
                         </DataTemplate>
